@@ -69,7 +69,9 @@ body {
 input,
 button,
 textarea {
-  appearance: none;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
   border: none;
   outline: none;
   background: none;
@@ -226,11 +228,12 @@ textarea {
   height: 100%;
   z-index: 999;
   background: transparent;
-  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+          backdrop-filter: blur(15px);
   display: flex;
   justify-content: center;
   align-items: center;
-  /* display: none; */
+  visibility: none;
 }
 
 .newTypeField {
@@ -269,7 +272,8 @@ textarea {
 }
 
 input[type="radio"] {
-  appearance: none;
+  -moz-appearance: none;
+       appearance: none;
   -webkit-appearance: none;
   border-radius: 50%;
   background: #e8e8e8;
@@ -279,7 +283,6 @@ input[type="radio"] {
   outline: 1px solid #999;
   width: 1rem;
   height: 1rem;
-  margin-right: 10px;
 }
 
 textarea {
@@ -305,11 +308,6 @@ a {
 
 label[for="date"] {
   display: inline-block;
-}
-label[for='low'],
-label[for='med'],
-label[for='high'] {
-    margin-right: 50px;
 }
 
 input[type="date"] {
@@ -339,7 +337,3 @@ input[type="date"] {
   opacity: 1;
 }
 
-.radioHold {
-    display: flex;
-    align-items: center;
-}
