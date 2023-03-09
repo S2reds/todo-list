@@ -3,8 +3,8 @@ import { newTask } from "./todo.js";
 import { domTime, selectedProject } from "./dom.js";
 
 console.log("test");
-domTime().listTask();
 domTime().listProject();
+domTime().listTask();
 
 window.addEventListener("load", () => {
   const todolist = JSON.parse(localStorage.getItem("todo")) || [];
@@ -43,12 +43,14 @@ popupNew.forEach((popup) => {
       const createTask = newTask();
       createTask.createTask();
       domTime().listTask();
+      pullout();
       deleter();
       switcher();
     } else if (getStyle("newTypeForm", "display") === "none") {
       const createProj = newTask();
       createProj.createProject();
       domTime().listProject();
+      pullout();
       deleter();
       switcher();
     }
@@ -80,6 +82,7 @@ export function switcher() {
           child.classList.remove("selected");
           x.classList.add("selected");
           domTime().listTask();
+          pullout();
         }
       }
     });
@@ -106,3 +109,23 @@ export function deleter() {
   });
 }
 deleter();
+
+// pullout switch
+export function pullout() {
+  const tasks = document.querySelectorAll(".newItem");
+  tasks.forEach((task) => {
+    task.addEventListener("click", (e) => {
+      const clicked = e.target;
+      const parent = clicked.closest("div");
+      if (task.classList.contains('pullout')) {
+          task.classList.remove("pullout");
+          parent.childNodes[3].style.display = 'none'
+        } else {
+            task.classList.add('pullout')
+            parent.childNodes[3].style.display = 'block'
+      }
+    });
+  });
+}
+
+pullout();

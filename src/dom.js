@@ -15,12 +15,18 @@ function displayTask(obj) {
   const p = document.createElement("p");
   const button = document.createElement("button");
   const details = document.createElement("button");
+  const pullout = document.createElement('div')
+  pullout.textContent = `Description: ${obj.desc}`
+  pullout.classList.add('desc')
   const date = document.createElement("p");
-  details.textContent = "Details";
+  details.textContent = "Priority";
   details.classList.add("details");
-  if (obj.prior === 'low') details.style.border = '2px solid green'
-  else if (obj.prior === 'med') details.style.border = '2px solid yellow'
-  else details.style.border = '2px solid red'
+  if (obj.prior === 'low') details.style.backgroundColor = 'green'
+  else if (obj.prior === 'med') {
+      details.style.backgroundColor = 'yellow'
+      details.style.color = 'black'
+  } 
+  else details.style.backgroundColor = 'crimson'
   date.textContent = `${obj.date}`;
   date.classList.add("taskDate");
   button.classList.add("taskRemove");
@@ -36,6 +42,7 @@ function displayTask(obj) {
   div.appendChild(check);
   div.appendChild(p);
   div.appendChild(date);
+  div.appendChild(pullout)
   div.appendChild(details);
   div.appendChild(button);
   content.appendChild(div);
