@@ -31,7 +31,7 @@ function displayTask(obj) {
       details.style.color = 'black'
   } 
   else details.style.backgroundColor = 'crimson'
-  date.textContent = `Due By: ${obj.date}`;
+  date.textContent = `Due By: ` + obj.date || '';
   date.classList.add("taskDate");
   button.classList.add("taskRemove");
   div.dataset.task = `${obj.title}`;

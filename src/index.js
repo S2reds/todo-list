@@ -100,6 +100,7 @@ export function switcher() {
           domTime().listTask();
           pullout();
           checkbox();
+          deleter();
         }
       }
     });
@@ -123,6 +124,9 @@ export function deleter() {
           domTime().removeTask(task);
         }
       }
+      pullout();
+      checkbox();
+      deleter();
     });
   });
 }
