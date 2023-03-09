@@ -1,12 +1,12 @@
 import "./style.css";
 import { newTask } from "./todo.js";
-import { domTime, selectedProject,footer } from "./dom.js";
+import { domTime, selectedProject, footer } from "./dom.js";
 import "./style.scss";
 
 console.log("test");
 domTime().listProject();
 domTime().listTask();
-footer()
+footer();
 
 window.addEventListener("load", () => {
   const todolist = JSON.parse(localStorage.getItem("todo")) || [];
@@ -112,6 +112,7 @@ export function deleter() {
   const deleted = document.querySelectorAll(".taskRemove");
   deleted.forEach((button) => {
     button.addEventListener("click", (e) => {
+      event.stopPropagation();
       const selected = selectedProject();
       const tasks = JSON.parse(localStorage.getItem(`${selected}`));
       const clicked = e.target;

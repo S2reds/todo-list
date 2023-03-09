@@ -145,7 +145,8 @@ function domTime() {
        const li = document.createElement('li')
        li.textContent = `${project}`
        li.classList.add('projects')
-       if (project === 'todo') continue;
+       console.log(project)
+       if (project === 'Todo') continue;
        else projectlist.appendChild(li)
     }
     
