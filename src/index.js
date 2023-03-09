@@ -46,6 +46,7 @@ popupNew.forEach((popup) => {
       pullout();
       deleter();
       switcher();
+      checkbox()
     } else if (getStyle("newTypeForm", "display") === "none") {
       const createProj = newTask();
       createProj.createProject();
@@ -53,9 +54,23 @@ popupNew.forEach((popup) => {
       pullout();
       deleter();
       switcher();
+      checkbox()
     }
   });
 });
+
+// header Add Task
+const headertask = document.querySelector('#head-submit')
+headertask.addEventListener('click', e => {
+    event.preventDefault()
+    newTask().createHead();
+    domTime().listTask();
+    pullout();
+    deleter();
+    switcher();
+    checkbox()
+
+})
 
 // popup window switcher
 const popuptypes = document.querySelectorAll(".popupSelector");
@@ -83,6 +98,7 @@ export function switcher() {
           x.classList.add("selected");
           domTime().listTask();
           pullout();
+          checkbox()
         }
       }
     });
@@ -117,15 +133,35 @@ export function pullout() {
     task.addEventListener("click", (e) => {
       const clicked = e.target;
       const parent = clicked.closest("div");
-      if (task.classList.contains('pullout')) {
-          task.classList.remove("pullout");
-          parent.childNodes[3].style.display = 'none'
-        } else {
-            task.classList.add('pullout')
-            parent.childNodes[3].style.display = 'block'
+      if (task.classList.contains("pullout")) {
+        task.classList.remove("pullout");
+        parent.childNodes[3].style.display = "none";
+      } else {
+        task.classList.add("pullout");
+        parent.childNodes[3].style.display = "block";
       }
     });
   });
 }
-
 pullout();
+
+// checkbox listener
+function checkbox() {
+    const check = document.querySelectorAll('.check')
+    check.forEach(x => {
+        x.addEventListener('click', e => {
+            event.stopPropagation()
+            const parent = e.target.closest('div')
+            console.log(parent)
+            const checkedtxt = parent.parentNode.childNodes[1].style.textDecoration
+            if (checkedtxt === 'line-through') {
+                parent.parentNode.childNodes[1].style.textDecoration = 'none'
+                x.innerHTML = ''
+            } else {
+                parent.parentNode.childNodes[1].style.textDecoration = 'line-through'
+                x.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M470.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L192 338.7 425.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/></svg>`
+            }
+        })
+    })
+}
+checkbox()

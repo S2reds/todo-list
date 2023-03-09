@@ -13,17 +13,19 @@ function newTask() {
     const domCreate = domTime();
     domCreate.createP();
   };
+  const createHead = () => {
+    domTime().headTask()
+  }
+  const checked = () => {
+
+  }
 
   return {
     createTask,
-    createProject
+    createProject,
+    createHead,
+    checked
   }
 }
 
-function listItems() {
-    const listTasks = () => {
-        
-    }
-}
-
-export { newTask, listItems };
+export { newTask};

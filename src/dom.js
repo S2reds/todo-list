@@ -1,4 +1,5 @@
 import {deleter} from './index.js';
+
 function Task(title, desc, date, prior) {
   (this.title = title),
     (this.desc = desc),
@@ -13,6 +14,9 @@ function displayTask(obj) {
   const div = document.createElement("div");
   const check = document.createElement("div");
   const p = document.createElement("p");
+  const click = document.createElement('p')
+  click.textContent = 'Click to expand'
+  click.classList.add('click')
   const button = document.createElement("button");
   const details = document.createElement("button");
   const pullout = document.createElement('div')
@@ -27,7 +31,7 @@ function displayTask(obj) {
       details.style.color = 'black'
   } 
   else details.style.backgroundColor = 'crimson'
-  date.textContent = `${obj.date}`;
+  date.textContent = `Due By: ${obj.date}`;
   date.classList.add("taskDate");
   button.classList.add("taskRemove");
   div.dataset.task = `${obj.title}`;
@@ -43,6 +47,7 @@ function displayTask(obj) {
   div.appendChild(p);
   div.appendChild(date);
   div.appendChild(pullout)
+  div.appendChild(click)
   div.appendChild(details);
   div.appendChild(button);
   content.appendChild(div);
@@ -152,6 +157,22 @@ function domTime() {
     domTime().listTask();
     deleter();
   };
+  const headTask = () => {
+    let project = selectedProject();
+    todos = JSON.parse(localStorage.getItem(`${project}`)) || [];
+    const form = document.querySelector("#head-form");
+    const formData = Object.fromEntries(new FormData(form).entries());
+    const task = new Task(
+      formData.title,
+    );
+    todos.push(task);
+    localStorage.setItem(`${project}`, JSON.stringify(todos));
+    // clears popup
+    const background = document.querySelector(".addNewBoxBackground");
+    background.style.display = "none";
+    // clears form content
+    document.querySelector("#head-form").reset();
+  }
   return {
     getForm,
     changeTask,
@@ -159,7 +180,8 @@ function domTime() {
     createP,
     listTask,
     removeTask,
-    listProject
+    listProject,
+    headTask
   };
 }
 
