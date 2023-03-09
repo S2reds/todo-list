@@ -3,7 +3,7 @@ import {deleter} from './index.js';
 function Task(title, desc, date, prior) {
   (this.title = title),
     (this.desc = desc),
-    (this.date = date),
+    (this.date = date || ''),
     (this.prior = prior);
 }
 

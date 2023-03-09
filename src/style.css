@@ -30,7 +30,7 @@ body {
   width: 1500px;
   height: 800px;
   /* border: 2px solid var(--dark); */
-  border-radius: 50px;
+  border-radius: 1rem;
   display: grid;
   grid-template-columns: 200px 1300px;
   grid-template-rows: 100px 700px;
@@ -201,7 +201,7 @@ textarea {
   display: flex;
   /* border: 1px solid black; */
   padding: 1rem;
-  border-radius: 2rem;
+  border-radius: 1rem;
   background-color: var(--dark);
   color: white;
   font-size: 1.25rem;
@@ -225,6 +225,7 @@ textarea {
   transition: 0.4s;
   cursor: pointer;
   max-height: 2rem;
+  margin-right: 2rem;
 }
 
 .taskRemove svg {
